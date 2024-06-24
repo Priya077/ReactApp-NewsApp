@@ -7,12 +7,12 @@ export class NewsItem extends Component {
         return (
             <div className="container my-5">
                 
-                <div className="card" style={{ width: '25rem',height: '25rem' }}>
-                    <img src={imageUrl} className="card-img-top" alt="..."/>
+                <div className="card" style={{ width: '25rem',height: '28rem' }}>
+                    <img src={!imageUrl ?"https://bl-i.thgim.com/public/incoming/7681di/article68316043.ece/alternates/LANDSCAPE_1200/IMG_iStock-1268669581.jp_2_1_0EB95CDN.jpg":imageUrl} className="card-img-top" alt="..."/>
                     <div className="card-body overflow-y-auto">
                         <h5 className="card-title">{title}</h5>
-                        <p className="card-text">{description}</p>
-                        <a href={url} target='_blank' class="btn btn-sm btn-primary">Read More</a>
+                        <p className="card-text">{description?description:"..."}</p>
+                        <a href={url} target='_blank' className="btn btn-sm btn-dark">Read More</a>
                     </div>
                 </div>
                     
