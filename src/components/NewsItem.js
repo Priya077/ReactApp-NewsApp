@@ -3,17 +3,22 @@ import React, { Component } from 'react'
 export class NewsItem extends Component {
     
     render() {
-        let { title, description, imageUrl, url } = this.props;
+        let { title, description, imageUrl, url, author, date ,source} = this.props;
+
         return (
             <div className="container my-5">
                 
-                <div className="card" style={{ width: '25rem',height: '28rem' }}>
+                <div className="card shadow-lg p-2 mb-2 bg-white rounded" style={{ width: '25rem', height: '35rem'}}>
+
+                    <span className="position-absolute translate-middle badge rounded-pill bg-danger" style={{top: '10px', left: '90%', zIndex: 1 }}>{source}</span>
                     <img src={!imageUrl ?"https://bl-i.thgim.com/public/incoming/7681di/article68316043.ece/alternates/LANDSCAPE_1200/IMG_iStock-1268669581.jp_2_1_0EB95CDN.jpg":imageUrl} className="card-img-top" alt="..."/>
                     <div className="card-body overflow-y-auto">
                         <h5 className="card-title">{title}</h5>
+                        <p className="card-text"><small class="text-muted">By {!author?"Unknown":author} on {new Date(date).toGMTString()}</small></p>
                         <p className="card-text">{description?description:"..."}</p>
                         <a href={url} target='_blank' className="btn btn-sm btn-dark">Read More</a>
                     </div>
+                   
                 </div>
                     
             </div>
