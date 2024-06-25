@@ -1,14 +1,26 @@
 ﻿import React, { Component } from 'react';
 import { NewsItem } from './NewsItem'; // Ensure the correct import path
-
+import PropTypes from 'prop-types'
 export class News extends Component {
+
+    static defaultProps={
+        
+        country: 'in',
+        category: 'general',
+    }
+
+    static propTypes = {
+        category: PropTypes.string,
+        country:PropTypes.string
+    }
+
     constructor() {
         super();
         this.state = {
             articles: [],
-            loading: false,
+            loading: true,
             page: 1,
-            pageSize:20
+            pageSize:10
         };
     }
 
@@ -16,7 +28,7 @@ export class News extends Component {
         this.setState({ loading: true }); // Set loading state to true before fetching data
 
         try {
-            let baseUrl = `https://newsapi.org/v2/top-headlines?country=in&apiKey=7ac0c233502f48a0a0287345adbaaae3&page=${this.state.page}&pageSize=${this.state.pageSize}`;
+            let baseUrl = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=7ac0c233502f48a0a0287345adbaaae3&page=${this.state.page}&pageSize=${this.state.pageSize}`;
             let response = await fetch(baseUrl);
             let data = await response.json(); // Await the JSON data
             this.setState({
@@ -62,9 +74,14 @@ export class News extends Component {
     render() {
         return (
             <div className="container my-4">
-                <h2 className="mx-3">NewsReader - Top Headlines</h2>
+                <h1 className="text-center mx-3">NewsSphere - Top Headlines</h1>
                 {this.state.loading ? (
-                    <div>Loading...</div>
+                    <div>
+                        <button class="btn btn-dark" type="button" disabled>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Loading...
+                        </button>
+                    </div>
                 ) : (
                     <div className="row row-cols-1 row-cols-md-3 g-4">
                         {this.state.articles.map((element) => {
