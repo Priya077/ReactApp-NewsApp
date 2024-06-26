@@ -31,7 +31,7 @@ export class News extends Component {
         this.setState({ loading: true }); // Set loading state to true before fetching data
         this.props.setProgress(10);
         try {
-            const baseUrl = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=7ac0c233502f48a0a0287345adbaaae3&page=${page}&pageSize=${pageSize}`;
+            const baseUrl = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.api_key}&page=${page}&pageSize=${pageSize}`;
             const response = await fetch(baseUrl);
             this.props.setProgress(30);
             const data = await response.json(); // Await the JSON data

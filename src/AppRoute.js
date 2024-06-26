@@ -5,7 +5,7 @@ import {News } from './components/News'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export class AppRoute extends Component {
-
+    api_key = '7ac0c233502f48a0a0287345adbaaae3'
    
 
     render() {
@@ -14,15 +14,15 @@ export class AppRoute extends Component {
             <Router>
                 <Routes>
 
-                    <Route path="/" element={<News setProgress={this.props.setProgress} />} />
+                    <Route path="/" element={<News api_key={this.api_key} setProgress={this.props.setProgress} />} />
                     <Route path="/about" element={<About />} />
-                    <Route path="/general" element={<News setProgress={this.props.setProgress} category='general'/>} />
-                    <Route path="/business" element={<News setProgress={this.props.setProgress} category='business' />} />
-                    <Route path="/entertainment" element={<News setProgress={this.props.setProgress} category='entertainment' />} />
-                    <Route path="/health" element={<News setProgress={this.props.setProgress} category='health' />} />
-                    <Route path="/science" element={<News setProgress={this.props.setProgress} category='science' />} />
-                    <Route path="/sports" element={<News setProgress={this.props.setProgress} category='sports' />} />
-                    <Route path="/technology" element={<News setProgress={this.props.setProgress} category='technology' />} />
+                    <Route path="/general" element={<News api_key={this.api_key} setProgress={this.props.setProgress} category='general'/>} />
+                    <Route path="/business" element={<News api_key={this.api_key} setProgress={this.props.setProgress} category='business' />} />
+                    <Route path="/entertainment" element={<News api_key={this.api_key} setProgress={this.props.setProgress} category='entertainment' />} />
+                    <Route path="/health" element={<News api_key={this.api_key} setProgress={this.props.setProgress} category='health' />} />
+                    <Route path="/science" element={<News api_key={this.api_key} setProgress={this.props.setProgress} category='science' />} />
+                    <Route path="/sports" element={<News api_key={this.api_key} setProgress={this.props.setProgress} category='sports' />} />
+                    <Route path="/technology" element={<News api_key={this.api_key} setProgress={this.props.setProgress} category='technology' />} />
 
                 </Routes>
             </Router >
