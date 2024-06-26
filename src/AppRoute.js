@@ -5,7 +5,7 @@ import {News } from './components/News'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export class AppRoute extends Component {
-    api_key = '7ac0c233502f48a0a0287345adbaaae3'
+    api_key = process.env.REACT_APP_NEWS_API_KEY
    
 
     render() {
