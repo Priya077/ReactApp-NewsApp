@@ -29,11 +29,13 @@ export class News extends Component {
 
     async fetchData(page, pageSize) {
         this.setState({ loading: true }); // Set loading state to true before fetching data
-
+        this.props.setProgress(10);
         try {
             const baseUrl = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=7ac0c233502f48a0a0287345adbaaae3&page=${page}&pageSize=${pageSize}`;
             const response = await fetch(baseUrl);
+            this.props.setProgress(30);
             const data = await response.json(); // Await the JSON data
+            this.props.setProgress(60);
             this.setState({
                 articles: page === 1 ? data.articles : this.state.articles.concat(data.articles),
                 totalResults: data.totalResults,
@@ -43,6 +45,7 @@ export class News extends Component {
             console.error('Error fetching news:', error);
             this.setState({ loading: false });
         }
+        this.props.setProgress(100);
     }
 
     componentDidMount() {
@@ -59,6 +62,7 @@ export class News extends Component {
             prevState => ({ page: prevState.page + 1 }),
             () => this.fetchData(this.state.page, this.state.pageSize)
         );
+        this.props.setProgress(0);
     };
 
     render() {
@@ -66,11 +70,8 @@ export class News extends Component {
             <>
                 <h1 className="text-center mx-3" style={{ marginTop: '75px' }}>{this.handleUpper()} - Top Headlines</h1>
                 {this.state.loading && (
-                    <div>
-                        <button className="btn btn-dark" type="button" disabled>
-                            <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                            Loading...
-                        </button>
+                    <div className="container mx-5" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px' }}>
+                        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" style={{ width: '30px', height: '30px', color: 'black' }}></span>
                     </div>
                 )}
                 <InfiniteScroll
@@ -78,11 +79,8 @@ export class News extends Component {
                     next={this.fetchMoreData}
                     hasMore={this.state.articles.length < this.state.totalResults}
                     loader={
-                        <div className="container my-3" style={{position:'absolute'} }>
-                            <button className="btn btn-dark" type="button" disabled>
-                                <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                Loading...
-                            </button>
+                        <div className="container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px' }}>
+                            <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" style={{ width: '30px', height: '30px', color: 'black' }}></span>
                         </div>
                     }
                 >
