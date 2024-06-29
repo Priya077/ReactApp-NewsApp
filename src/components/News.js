@@ -65,10 +65,14 @@ export class News extends Component {
         this.props.setProgress(0);
     };
 
+
     render() {
         return (
             <>
-                <h1 className="text-center mx-3" style={{ marginTop: '75px' }}>{this.handleUpper()} - Top Headlines</h1>
+                <div className="container">
+                    <h1 className="text-center mx-3" style={{ marginTop: '75px' }}>{this.handleUpper()} - Top Headlines</h1>
+                    
+                </div>
                 {this.state.loading && (
                     <div className="container mx-5" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px' }}>
                         <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" style={{ width: '30px', height: '30px', color: 'black' }}></span>
